@@ -1,4 +1,4 @@
-import { $, browser, ExpectedConditions } from 'protractor';
+import { $, $$, browser, ExpectedConditions } from 'protractor';
 
 describe('When: I use the reading list feature', () => {
   it('Then: I should see my reading list', async () => {
@@ -9,6 +9,17 @@ describe('When: I use the reading list feature', () => {
 
     const readingListToggle = await $('[data-testing="toggle-reading-list"]');
     await readingListToggle.click();
+
+    await browser.wait(
+      ExpectedConditions.textToBePresentInElement(
+        $('[data-testing="reading-list-container"]'),
+        'My Reading List'
+      )
+    );
+  });
+  it('Then: I should be able to delete a book from reading list and show snackbar', async () => {
+    const button = await $('.undo-action-list');
+    await button.click();
 
     await browser.wait(
       ExpectedConditions.textToBePresentInElement(
