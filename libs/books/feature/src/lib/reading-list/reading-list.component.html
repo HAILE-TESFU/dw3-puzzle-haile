@@ -10,6 +10,13 @@
             </div>
         </div>
         <div>
+            <button mat-flat-button color="primary" *ngIf="!b.finished" (click)="markAsRead(b)">Mark Read</button>
+            <h4 *ngIf="b.finished"><i>
+      <div><strong>Finished</strong></div>
+      <div><strong>{{b.finishedDate | date}}</strong></div>
+      </i> </h4>
+        </div>
+        <div>
             <button mat-icon-button color="warn" [attr.aria-label]="'Remove ' + b.title + ' from reading list'" (click)="removeFromReadingList(b)">
         <mat-icon>remove_circle</mat-icon>
       </button>
